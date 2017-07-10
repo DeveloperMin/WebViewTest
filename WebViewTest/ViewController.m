@@ -22,18 +22,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self test3];
+    [self test2];
 }
 
 - (void)test2 {
     GRMustacheTemplate *demoTemplate = [GRMustacheTemplate templateFromContentsOfFile:[[NSBundle mainBundle] pathForResource:@"sample2" ofType:@"html"] error:nil];
     
-    NSDictionary *objectToRender = @{@"name": @"Chris",
-@"value": @10000,
-                                     @"taxed_value": @ (10000 - (10000 * 0.4)),
-                                     @"in_ca": @(true)
+//    NSDictionary *objectToRender = @{@"name": @"Chris",
+//@"value": @10000,
+//                                     @"taxed_value": @ (10000 - (10000 * 0.4)),
+//                                     @"in_ca": @(true)
+//                                     };
+//    NSDictionary *objectToRender = @{
+//                                     @"person": @"false"
+//                                     };
+    NSDictionary *objectToRender = @{
+                                     @"person": @[
+                                             @{@"name":@"lixm"},
+                                             @{@"name":@"limmy"},
+                                             @{@"name":@"lilei"}
+                                         ]
+                                     
+                                     
                                      };
-    
     NSString *htmlString = [demoTemplate renderObject:objectToRender error:nil];
     [self.webView loadHTMLString:htmlString baseURL:nil];
 }
